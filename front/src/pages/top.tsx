@@ -97,7 +97,7 @@ export default function Top({username}: TopProps) {
                   <p className="single-runtime">'{movie.runtime}</p>
                 </div>
                 <div className="single-right">
-                  <p className="single-type">{/*movie.Type[0].toUpperCase() + movie.Type.slice(1, movie.Type.length)*/}</p>
+                  <p className="single-type">{movie.type[0].toUpperCase() + movie.type.slice(1, movie.type.length)}</p>
                 </div>
               </div>
             </div>

@@ -181,15 +181,15 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
                     </div>
                     {theId !== null &&
                     <div className="three-buttons">
-                        <button onClick={addWatched} className="add-watched round-button">
+                        <button title='Add to Watched' onClick={addWatched} className="add-watched round-button">
                         <svg className="the-eye w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
                             <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
                         </svg>
                         </button>
-                        <button onClick={addWatchlist} className="add-watchlist round-button">
+                        <button title='Add to Watchlist' onClick={addWatchlist} className="add-watchlist round-button">
                             +
                         </button>
-                        <button onClick={addTop} className="add-top round-button">
+                        <button title='Add to Top 100' onClick={addTop} className="add-top round-button">
                             100
                         </button>
                     </div>

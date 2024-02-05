@@ -35,11 +35,7 @@ npm run dev
 ```
 
 ## Screenshots
-- **Desktop**<br>
-![home](images/home-d.png)
-![add](images/add-d.png)
-![top](images/top-d.png)
-- **Mobile**<br>
-![home](images/home-m.png)
-![top](images/top-m.png)
+![desktop](images/desktop.png)
+![mobile](images/mobile.png)
+![info](images/plate.png)
 

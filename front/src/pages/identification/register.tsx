@@ -19,6 +19,7 @@ function Register({goLogin}: RegisterProps) {
     }
       
     const [errors, setErrors] = useState<ErrorState | null>(null);
+    const [authenticated, setAuthenticated] = useState(false)
     const nav = useNavigate()
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -35,10 +36,13 @@ function Register({goLogin}: RegisterProps) {
             }
         })
         if (response.status === 200) {
+            setAuthenticated(true)
             localStorage.setItem("username", formData.username)
             localStorage.setItem("userId", response.data.user.id)
+            localStorage.setItem("authenticated", String(true))
             console.log(response.data.user.id)
             nav(`/${response.data.user.id}`)
+            window.location.reload();
         }
     } catch (error) { 
         if (axios.isAxiosError(error) && error.response && error.response.data) {
@@ -80,6 +84,7 @@ function Register({goLogin}: RegisterProps) {
             <div className="card-footer card-footer-register">
                 <div className="login-back">Have an account? <span className='like-link' onClick={goLogin}>Login</span></div>
             </div>
+            {authenticated}
         </div>
   )
 }

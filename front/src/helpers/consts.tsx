@@ -1,0 +1,16 @@
+export const initialData = {
+    id: -1,
+    Title: "",
+    Year: "",
+    Runtime: "",
+    Type: "",
+    Poster: "",
+    Released: "",
+    imdbRating: "",
+    Genre: "",
+    Actors: "",
+    Writer: "",
+    Director: "",
+    Plot: "",
+    Country: "",
+}

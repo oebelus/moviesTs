@@ -35,7 +35,7 @@ npm run dev
 ```
 
 ## Screenshots
-![desktop](images/desktop.png)
+![poster](images/desktop.png)
 ![mobile](images/mobile.png)
 ![info](images/plate.png)
 

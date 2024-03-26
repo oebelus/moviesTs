@@ -2,12 +2,17 @@ import { useEffect , useState} from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 import MovieOut from '../helpers/types'
+import Movies from '../helpers/types';
 
 export default function Watched() {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [watched, setWatched] = useState([])
   const [error, setError] = useState(null)
+
+  const [moviesLength, setMoviesLength] = useState(0)
+  const [seriesLength, setSeriesLength] = useState(0)
+
   const nav = useNavigate()
 
   useEffect(() => {
@@ -16,12 +21,17 @@ export default function Watched() {
       const data = response.data
       setWatched(data)
       setLoading(false)
+      const movies = watched.filter((show: Movies) => show.type === 'movie')
+      setMoviesLength(movies.length)
+
+      const series = watched.filter((show: Movies) => show.type === 'series')
+      setSeriesLength(series.length)
     })
     .catch((error) => {
       console.error('Error fetching user data:', error);
       setError(error)
       setLoading(false)
-  })}, [userId])
+  })}, [userId, watched])
 
   const deleteWatched = (index: number) => {
     const movieToDelete: MovieOut = watched[index]
@@ -38,14 +48,17 @@ export default function Watched() {
   }
 
   const imageClick = (title: string) => {
-    console.log(title)
     nav(`/movie/${title}`)
   }
 
   return (
     <div className='watched-page'>
       <h1 className='watched-title'>Watched</h1>
-      <div className="watched-container">
+      <div className="">
+        <div className='watched-stats'>
+          <p className='font-white'>You watched {moviesLength} movies and {seriesLength} series</p>
+        </div>
+        <div className='watched-container'>
         {watched.map((movie: MovieOut, index) => 
           <div className='watched-movies' key={index}>
             <p onClick={() => deleteWatched(index)} className="watched-cross">x</p>
@@ -61,7 +74,8 @@ export default function Watched() {
             </div>
           </div>
         )}
-      </div>
+        </div>
+        </div>
       {loading}{error}
     </div>
   )

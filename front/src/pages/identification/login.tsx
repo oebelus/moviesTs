@@ -35,7 +35,6 @@ export default function Login({registerButton, passwordButton}: LoginProps) {
                 }
             }
         )
-        console.log(response)
             if (response.status === 200) {
                 const userId = response.data.userId
                 setAuthenticated(true)
@@ -48,7 +47,6 @@ export default function Login({registerButton, passwordButton}: LoginProps) {
                 setErrors({ general: response.data.error });
             }
         } catch (error) {
-            e.preventDefault()
             if (axios.isAxiosError(error) && error.response && error.response.data) {
                 setErrors({ general: error.response.data.error });
             } else {

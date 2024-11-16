@@ -2,12 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-interface LoginProps {
-    registerButton: ()=>void
-    passwordButton: ()=>void
-}
-
-export default function Login({registerButton, passwordButton}: LoginProps) {
+export default function Login() {
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
@@ -19,7 +14,16 @@ export default function Login({registerButton, passwordButton}: LoginProps) {
 
     const [authenticated, setAuthenticated] = useState(false)
     const [errors, setErrors] = useState<ErrorState | null>(null);
-    const nav = useNavigate()
+    
+     const navigate = useNavigate();
+
+    const goToRegister = () => {
+        navigate('/register');
+    };
+
+    const goToPasswordReset = () => {
+        navigate('/password');
+    };
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -41,7 +45,7 @@ export default function Login({registerButton, passwordButton}: LoginProps) {
                 localStorage.setItem("authenticated", String(true))
                 localStorage.setItem("userId", userId)
                 localStorage.setItem("username", loginData.username)
-                nav(`/${userId}`)
+                navigate(`/${userId}`)
                 window.location.reload();
             } else {
                 setErrors({ general: response.data.error });
@@ -83,14 +87,14 @@ export default function Login({registerButton, passwordButton}: LoginProps) {
                             <p className='remember-text'>Remember Me</p>
                         </div>
                         <div className="forgot-pass">
-                            <span onClick={passwordButton} className='like-link'>Forgot Password</span>
+                            <span onClick={goToPasswordReset} className='like-link'>Forgot Password</span>
                         </div>
                     </div>
                     <button type='submit' className="login-button">Login</button>
                 </form>
             </div>
             <div className="card-footer">
-                <div className="sign">Don't have an account? <span className='like-link' onClick={registerButton}>Register</span></div>
+                <div className="sign">Don't have an account? <span className='like-link' onClick={goToRegister}>Register</span></div>
             </div>
         </div>
         <p>{authenticated}</p>

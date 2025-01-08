@@ -1,87 +1,156 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface NavbarProps {
     authenticated: boolean;
     isAuthenticated: boolean | null;
     userId: number;
     setVisible: (visible: boolean) => void;
-    setAuthenticated: (authenticated: boolean) => void
+    setAuthenticated: (authenticated: boolean) => void;
 }
 
-export default function Navbar({isAuthenticated, authenticated, userId, setVisible, setAuthenticated}: NavbarProps) {
-        const handleLogout = () => {
-        ["authenticated", "userId", "username", "isAuthenticated"].forEach(item => localStorage.removeItem(item));
+export default function Navbar({
+    isAuthenticated,
+    authenticated,
+    userId,
+    setVisible,
+    setAuthenticated,
+}: NavbarProps) {
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const handleLogout = () => {
+        ["authenticated", "userId", "username", "isAuthenticated"].forEach(item =>
+            localStorage.removeItem(item)
+        );
         setAuthenticated(false);
-        window.location.reload(); // to check later
-    }
+        window.location.reload();
+    };
+
+    const toggleNav = () => setIsNavOpen(!isNavOpen);
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
+        <nav className="top-0 left-0 w-full bg-background z-50 shadow-md">
+            <div className="flex items-center justify-between p-4">
+                {/* Mobile Toggle Button */}
                 <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+                    onClick={toggleNav}
+                    aria-label="Toggle navigation"
+                    className="md:hidden"
                 >
-                <span className="navbar-toggler-icon"></span>
+                    <span className="block w-6 h-1 bg-yellow-600 mb-1"></span>
+                    <span className="block w-6 h-1 bg-yellow-600 mb-1"></span>
+                    <span className="block w-6 h-1 bg-yellow-600"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                    <Link className="link-li" to={isAuthenticated ? `/${userId}` : '/'}>
-                        Home
-                    </Link>
-                    </li>
-                    {authenticated && (
-                    <li className="nav-item dropdown">
-                        <div
-                        className="nav-link dropdown-toggle"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
+                <Link
+                    to={isAuthenticated ? `/${userId}` : "/"}
+                    className="text-xl font-bold text-yellow-600"
+                >
+                    My Movies
+                </Link>
+            </div>
+
+            {/* Sliding Navbar */}
+            <div
+                className={`fixed top-0 left-0 h-full bg-card transform transition-transform duration-300 ${
+                    isNavOpen ? "translate-x-0" : "-translate-x-full"
+                } md:relative md:translate-x-0 md:flex md:bg-transparent w-48`}
+            >
+                <div className="flex justify-between items-center p-4">
+                    {/* Close Button */}
+                    <button
+                        onClick={toggleNav}
+                        className="text-yellow-600 font-bold"
+                    >
+                        <span className="material-symbols-outlined md:hidden">
+                            close
+                        </span>
+                    </button>
+                </div>
+
+                <ul className="flex flex-col p-4 space-y-4 md:flex-row md:space-y-0 md:space-x-6">
+                    <li>
+                        <Link
+                            to={isAuthenticated ? `/${userId}` : "/"}
+                            onClick={() => setIsNavOpen(false)}
+                            className="hover:text-[#896207] text-yellow-600"
                         >
-                        My Movies
-                        </div>
-                        <ul className="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <Link className="link-li" to={`/${userId}/top`}>
-                            My Top 100 Movies
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="link-li" to={`/${userId}/watchlist`}>
-                            My Watchlist
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="link-li" to={`/${userId}/watched`}>
-                            Watched
-                            </Link>
-                        </li>
-                        </ul>
-                    </li>
-                    )}
-                    {authenticated ? (
-                    <li className="nav-item">
-                        <div className="link-li" onClick={handleLogout}>
-                        Logout
-                        </div>
-                    </li>
-                    ) : (
-                    <li className="nav-item">
-                        <Link className="link-li" to="auth/login" onClick={() => setVisible(true)}>
-                        Login
+                            Home
                         </Link>
                     </li>
+                    {authenticated && (
+                        <li>
+                            <div className="cursor-pointer hover:text-[#896207]">
+                                My Movies
+                            </div>
+                            <ul className="absolute left-0 top-full hidden group-hover:block bg-hover p-2 space-y-2 shadow-lg rounded-lg">
+                                <li>
+                                    <Link
+                                        to={`/${userId}/top`}
+                                        onClick={() => setIsNavOpen(false)}
+                                        className="block hover:text-[#896207] text-yellow-600"
+                                    >
+                                        My Top 100 Movies
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={`/${userId}/watchlist`}
+                                        onClick={() => setIsNavOpen(false)}
+                                        className="block hover:text-[#896207] text-yellow-600"
+                                    >
+                                        My Watchlist
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to={`/${userId}/watched`}
+                                        onClick={() => setIsNavOpen(false)}
+                                        className="block hover:text-[#896207] text-yellow-600"
+                                    >
+                                        Watched
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                    )}
+                    {authenticated ? (
+                        <li>
+                            <button
+                                onClick={() => {
+                                    handleLogout();
+                                    setIsNavOpen(false);
+                                }}
+                                className="hover:text-[#896207] text-yellow-600"
+                            >
+                                Logout
+                            </button>
+                        </li>
+                    ) : (
+                        <li className="flex gap-4">
+                            <Link
+                                to="/login"
+                                onClick={() => {
+                                    setVisible(true);
+                                    setIsNavOpen(false);
+                                }}
+                                className="hover:text-[#896207] text-yellow-600"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/register"
+                                onClick={() => {
+                                    setVisible(true);
+                                    setIsNavOpen(false);
+                                }}
+                                className="hover:text-[#896207] text-yellow-600"
+                            >
+                                Register
+                            </Link>
+                        </li>
                     )}
                 </ul>
-                </div>
             </div>
         </nav>
-    )
+    );
 }

@@ -117,23 +117,24 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
 
   return (
     <div>
-        <div className="movie">
-            <h1 className='home-title'>Find Movies, TV shows and more...</h1>
-            <input className='searchField' type="text" onChange={handleInput} name="findMovie" value={display?movieName:undefined} placeholder='Find a show' id="" />
+        <div className="mt-20">
+            <h1 className='text-yellow-600 text-2xl md:text-4xl'>Find Movies, TV shows and more...</h1>
+            <input className='w-[90%] text-xl h-14 mt-16 rounded-lg px-4 bg-zinc-800 text-white mb-2' type="text" onChange={handleInput} name="findMovie" value={display?movieName:undefined} placeholder='Find a Show' id="" />
             {shows && input && shows.length > 0 && display === false?
-                <div className='big-scroll'>
+                <div className='flex flex-col gap-2 w-88 bg-black bg-opacity-50 rounded-lg p-2 mt-2 overflow-y-scroll max-h-[450px]'>
                     {shows.map((show, index) => (
-                        <div key={index} className='scroll' onClick={() => {setMovieName(show.Title); setDisplay(true)}}>
-                            <div className="image">
-                                <img src={show.Poster ? show.Poster : undefined} width="60px" height="80px" alt="" />
-                            </div>
-                            <div className="text">
+                        <div 
+                            key={index} 
+                            className='flex gap-4 cursor-pointer bg-card hover:bg-zinc-800 transition-all duration-300 p-2 items-center rounded-md border-borderGray border-2 text-white' 
+                            onClick={() => {setMovieName(show.Title); setDisplay(true)}}
+                        >
+                            <img src={show.Poster ? show.Poster : undefined} width="60px" height="80px" alt="" />
+                            <div>
                                 <h4>{show.Title}</h4>
-                                <div className="small">
+                                <div className="flex gap-2">
                                     <p>{show.Year}</p>
                                     <p>-</p>
                                     <p>{show.Type? show.Type[0].toUpperCase() + show.Type.slice(1, show.Type.length) : null}</p>
-                                    <p style={{display: "none"}}>{show.Released}{show.imdbRating}</p>
                                 </div>
                             </div>
                         </div>
@@ -142,45 +143,48 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
                 </div> 
                 : 
                 (display?
-                <div className='movie-container'>
-                    <h2 data-name='title'>{movieData.Title}</h2>
-                    <div className='movie-card'>
-                        <div className="left-container">
-                            <div className="left-small">
-                                <p data-name='type'>{movieData.Type? movieData.Type[0].toUpperCase() + movieData.Type.slice(1, movieData.Type.length) : null}</p>
-                                <p data-name='year'>{movieData.Released}</p>
-                                <p data-name='runtime'>{movieData.Runtime}</p>
+                <div className='m-auto bg-container rounded-md p-4 mt-4 mb-4 border-2 border-zinc-900 md:w-[80%] lg:w-[80%] w-[95%]'>
+                    <h2 className='text-yellow-600 text-3xl mb-4'>{movieData.Title}</h2>
+                    <div className='md:px-8 px-2 md:flex sm:flex-row gap-4 md:justify-between flex-col justify-center'>
+                        <div>
+                            <div className="flex gap-4 text-white justify-center mb-2">
+                                <p className=''>{movieData.Type? movieData.Type[0].toUpperCase() + movieData.Type.slice(1, movieData.Type.length) : null},</p>
+                                <p className='year'>{movieData.Released},</p>
+                                <p className='runtime'>{movieData.Runtime}</p>
                             </div>
-                            <div className="left-big">
-                                <img className='poster-image' src={movieData.Poster} alt="" />
-                                <div className="genres">
+                            <div>
+                                <img src={movieData.Poster} alt="" />
+                                <div className="flex gap-2 mt-4 mb-4">
                                     {movieData.Genre ? movieData.Genre.split(', ').map((genre, key: number) => {
                                         return (
                                             <p className="genre" key={key}>{genre}</p>
                                         )
                                     }): null}
                                 </div>
-                                    
                             </div>
                         </div>
-                        <div className="right-container">
-                            <div className='right-small'>
+                        <div className="flex flex-col gap-4 text-lg">
+                            <div className='flex relative ml-auto gap-10 text-white text-lg'>
                                 {movieData.imdbRating?
-                                <p>IMDb Rating<br/>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                    {movieData.imdbRating}/10
-                                </p>:null
+                                <div>
+                                    <div className='flex gap-1'>
+                                        <div className='mt-2'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                            </svg>
+                                        </div>
+                                         <p>IMDb Rating</p>
+                                    </div>
+                                    <p>{movieData.imdbRating}/10</p>
+                                </div>:null
                                 }
-                                {/*<p>Your Rating:</p>*/}
                             </div>
-                            <div className="right-big">
-                                <p><span className='span-title'>Director: </span>{movieData.Director}<hr/></p>
-                                <p><span className='span-title'>Writer: </span>{movieData.Writer}<hr/></p>
-                                <p><span className='span-title'>Actors: </span>{movieData.Actors}<hr/></p>
+                            <div className='text-white mt-4 text-lg flex flex-col gap-8 sm:mx-24 mx-8'>
+                                <p><span className=''>Director: </span>{movieData.Director == "N/A" ? movieData.Writer : movieData.Director}<hr/></p>
+                                <p><span className=''>Writer: </span>{movieData.Writer}<hr/></p>
+                                <p><span className=''>Actors: </span>{movieData.Actors}<hr/></p>
                                 <p>{movieData.Plot}<hr/></p>
-                                <p><span className='span-title'>Country: </span>{movieData.Country}</p>
+                                <p><span className=''>Country: </span>{movieData.Country}</p>
                             </div>
                         </div>
                     </div>

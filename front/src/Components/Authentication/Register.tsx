@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -28,7 +27,7 @@ export default function Register() {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrors({}); // Clear previous errors
+    setErrors({});
     try {
       const response = await axios.post('http://localhost:8000/users/register', formData, {
         headers: { 'Content-Type': 'application/json' },
@@ -52,63 +51,68 @@ export default function Register() {
   };
 
   return (
-    <div className="register-card card text-center">
-      <h2 className="create-account">Create an Account</h2>
-      <form className="register-form" onSubmit={handleRegister}>
-        <div className="username register-form-item">
-          <label className="register-label" htmlFor="username">Username</label>
-          <input
-            className="register-input"
-            placeholder="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            type="text"
-          />
-          {errors.username && <p className="register-error">{errors.username}</p>}
+    <div className="flex -mt-24 md:-mt-20 justify-center items-center h-screen">
+      <div className="p-8 text-white rounded-lg w-96 max-w-md">
+        <h2 className="text-3xl font-semibold text-yellow-600 mb-6 text-center">Create an Account</h2>
+        <div className="flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M3 2a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM0 14s1-3 4-3h8c3 0 4 3 4 3H0z"/>
+          </svg>
         </div>
-        <div className="email register-form-item">
-          <label className="register-label" htmlFor="email">Email Address</label>
-          <input
-            className="register-input"
-            placeholder="Email Address"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            type="text"
-          />
-          {errors.email && <p className="register-error">{errors.email}</p>}
-        </div>
-        <div className="pass register-form-item">
-          <label className="register-label" htmlFor="password">Password</label>
-          <input
-            className="register-input"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            type="password"
-          />
-          {errors.password && <p className="register-error">{errors.password}</p>}
-        </div>
-        <div className="confirm register-form-item">
-          <label className="register-label" htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            className="register-input"
-            placeholder="Confirm Password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            type="password"
-          />
-          {errors.confirmPassword && <p className="register-error">{errors.confirmPassword}</p>}
-        </div>
-        <button type="submit" className="register-button">Register</button>
-        {errors.general && <p className="register-error general-error">{errors.general}</p>}
-      </form>
-      <div className="card-footer card-footer-register">
-        <div className="login-back">
-          Have an account? <span className="like-link" onClick={() => navigate('/login')}>Login</span>
+        <form onSubmit={handleRegister}>
+          <div className="mb-4">
+            <label htmlFor="username">Username</label>
+            <input
+              className="p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white"
+              placeholder="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              type="text"
+            />
+            {errors.username && <p className="error-message text-red-500 text-sm mt-1">{errors.username}</p>}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email">Email Address</label>
+            <input
+              className="p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white"
+              placeholder="Email Address"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+            />
+            {errors.email && <p className="error-message text-red-500 text-sm mt-1">{errors.email}</p>}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password">Password</label>
+            <input
+              className="p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              type="password"
+            />
+            {errors.password && <p className="error-message text-red-500 text-sm mt-1">{errors.password}</p>}
+          </div>
+          <div className="mb-6">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              className="p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              type="password"
+            />
+            {errors.confirmPassword && <p className="error-message text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
+          </div>
+          <button type="submit" className="bg-yellow-600 text-white hover:bg-yellow-500 w-full py-3 rounded-lg transition-colors">Register</button>
+          {errors.general && <p className="error-message text-red-500 text-sm mt-3">{errors.general}</p>}
+        </form>
+        <div className="mt-4 text-center">
+          <div className="text-gray-400">Already have an account? <span className="text-yellow-600 cursor-pointer underline hover:text-yellow-500" onClick={() => navigate('/login')}>Login</span></div>
         </div>
       </div>
     </div>

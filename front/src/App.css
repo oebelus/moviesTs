@@ -1,139 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&family=The+Girl+Next+Door&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mali:wght@300&family=The+Girl+Next+Door&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: monospace
+  font-family: monospace;
 }
 
 body {
   background-color: #212121;
 }
 
-.App {
-  text-align: center;
-  background-color: #1C1C1C;
-  height: 265px;
-  padding: 20px;
-}
-
 .home-title {
-  color:#BA8300;
+  color: #ba8300;
   margin-top: 30px;
-}
-
-.navbar {
-  background-color: transparent !important;
-  font-size: 20px;
-  border-radius: 10px;
-  margin-top: -20px;
-}
-
-.navbar-brand {
-  font-size: 24px;
-  color: #BA8300;
-  font-weight: 700;
-  font-family: cursive;
-  font-style: italic;
-}
-
-.d-flex {
-  margin-top: 10px;
-}
-
-.nav-link {
-  position: relative;
-  color: #BA8300 !important;
-  font-weight: 700;
-  bottom: 5px;
-}
-
-.nav-item {
-  text-decoration: none;
-  position: relative;
 }
 
 .drop-item {
   color: rgba(0, 0, 0, 0.836) !important;
   padding: 10px 10px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 18px;
-}
-
-.dropdown-menu {
-  background-color: #BA8300;
-}
-
-
-.drop-item:hover {
-  background-color: #3333333f;
-}
-
-.dropdown-toggle::after {
-  position: relative;
-  color: #b19452f6;
-  top: 2px;
-}
-
-.big-scroll {
-  margin: auto;
-  width: 70%;
-  border-radius: 20px;
-}
-
-.scroll {
-  display: flex;
-  justify-content: left;
-  gap: 7%;
-  cursor: pointer;
-  background-color: #1C1C1C;
-  color: white;
-  padding: 10px;
-  align-items: center;
-  border-radius: 10px;
-  border: 1px rgb(77, 75, 75) solid;
-  transition: 0.2s;
-}
-
-.scroll:hover {
-  background-color: #111111;
-}
-
-hr.scroll {
-  border-top: 1px solid red;
-}
-
-.searchField ::-webkit-scrollbar{
-  box-shadow: inset 0 0 6px black
-
-}
-
-.small {
-  display: flex;
-  gap: 4%;
-}
-
-.link-li, .nav-link {
-  text-decoration: none;
-  color: #C7C8C9;
-  cursor: pointer;
-  transition: 0.8s;
-}
-
-.navbar-nav {
-  gap: 50px;
-  margin-right: 3rem;
-}
-
-.movie-container {
-  background-color: #1919199d;
-  border-radius: 10px;
-  width: 80%;
-  height: 40%;
-  padding: 30px 50px;
-  margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .movie-container-second {
@@ -150,7 +37,7 @@ hr.scroll {
 
 .movie-page-title {
   position: relative;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   color: #9e7106;
   font-size: 70px;
   top: 2%;
@@ -158,28 +45,8 @@ hr.scroll {
 
 .movie-container h2 {
   margin-bottom: 20px;
-  color: #BA8300;
+  color: #ba8300;
   font-weight: 600;
-}
-
-.movie-card {
-  display: flex;
-  gap: 10%;
-  justify-content: space-between;
-}
-
-.searchField {
-  width: 70%;
-  height: 60px;
-  padding: 35px;
-  margin-bottom: 20px;
-  margin-top: 70px;
-  border-radius: 40px;
-  background-color: #131313;
-  color: white;
-  font-size: 20px;
-  border-color: rgba(255, 255, 255, 0.315);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .find-user {
@@ -192,7 +59,8 @@ hr.scroll {
   color: white;
   font-size: 20px;
   border-color: rgba(255, 255, 255, 0.315);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .find-user-div {
@@ -216,11 +84,12 @@ hr.scroll {
 }
 
 .find-user-btn:hover {
-  background-color: #BA8300;
+  background-color: #ba8300;
   color: white;
 }
 
-.left-small, .right-small {
+.left-small,
+.right-small {
   position: relative;
   justify-content: center;
   display: flex;
@@ -236,7 +105,7 @@ hr.scroll {
 }
 
 .bi-star-fill {
-  color: #BA8300;
+  color: #ba8300;
   position: relative;
   right: 5px;
   bottom: 3px;
@@ -266,7 +135,7 @@ hr.scroll {
 }
 
 hr {
-  color: grey
+  color: grey;
 }
 
 .span-title {
@@ -288,7 +157,6 @@ hr {
   cursor: pointer;
   z-index: 1;
   text-align: center;
-
 }
 
 .modal-thing {
@@ -307,7 +175,7 @@ hr {
 }
 
 .login-button {
-  background-color: #BA8300;
+  background-color: #ba8300;
   border-color: transparent;
   padding: 8px;
   font-size: 20px;
@@ -315,7 +183,7 @@ hr {
 }
 
 .register-button {
-  background-color: #BA8300;
+  background-color: #ba8300;
   border-color: transparent;
   padding: 8px;
   font-size: 20px;
@@ -326,14 +194,14 @@ hr {
 }
 
 .login-button:hover {
-  background-color: #1C1C1C;
-  border-color: #BA8300;
+  background-color: #1c1c1c;
+  border-color: #ba8300;
   color: white;
 }
 
 .register-button:hover {
-  background-color: #1C1C1C;
-  border-color: #BA8300;
+  background-color: #1c1c1c;
+  border-color: #ba8300;
   color: white;
 }
 
@@ -371,7 +239,7 @@ hr {
 .login-input {
   padding: 10px;
   border-radius: 5px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   border: 3px solid white;
   width: 75%;
   color: white;
@@ -381,7 +249,7 @@ hr {
 .register-input {
   padding: 10px;
   border-radius: 5px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   border: 3px solid white;
   width: 75%;
   color: white;
@@ -394,7 +262,7 @@ hr {
 }
 
 .card-footer {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
   font-family: fantasy;
   height: 90px;
@@ -442,7 +310,7 @@ hr {
 
 .remember-text {
   position: relative;
-  top: 8px
+  top: 8px;
 }
 
 .middle {
@@ -457,23 +325,15 @@ hr {
 
 .like-link {
   cursor: pointer;
-  color: #BA8300;
+  color: #ba8300;
   text-decoration: underline;
   font-size: 20px;
 }
 
 .movie-icon {
-  color: #BA8300;
+  color: #ba8300;
   position: relative;
   bottom: 16px;
-}
-
-.welcome-back, .reset-password {
-  position: relative;
-  color: white;
-  bottom: 10px;
-  font-size: 40px;
-  margin-bottom: 15px;
 }
 
 .create-account {
@@ -498,7 +358,7 @@ hr {
 
 .round-button:hover {
   background-color: #131313;
-  color:#9e7106
+  color: #9e7106;
 }
 
 .three-buttons {
@@ -583,7 +443,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #C7C8C9;
+  color: #c7c8c9;
   gap: 10px;
   margin: auto;
   position: absolute;
@@ -742,10 +602,6 @@ hr {
   .ReactModal__Content {
     width: 100%;
     left: 0px !important;
-  }
-  .welcome-back {
-    font-size: 30px;
-    margin-top: 10px;
   }
   .remember-text {
     font-size: 15px;

@@ -10,7 +10,6 @@ import Navbar from './Components/Navbar';
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Password from './Components/Authentication/Password';
-import Authentication from './pages/Authentication';
 
 const App = () => {
   const [, setVisible] = useState(false);
@@ -25,7 +24,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="text-center bg-card">
       <BrowserRouter>
         <Navbar
           authenticated={authenticated}
@@ -37,11 +36,10 @@ const App = () => {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home userId={userId} isAuthenticated={isAuthenticated} />} />
-          <Route path="/auth/*" element={<Authentication />}>
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="password" element={<Password />} />
-          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/password" element={<Password />} />
+          
 
           {/* Protected Routes */}
           <Route

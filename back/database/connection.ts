@@ -1,10 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 import Human from "./models/Human.js";
 import Watched from "./models/Watched.js";
 import Watchlist from "./models/Watchlist.js";
 import Top from "./models/Top.js";
-dotenv.config()
+dotenv.config();
+
+console.log(process.env.DB_NAME);
 
 const connection = new Sequelize({
   database: process.env.DB_NAME,
@@ -13,7 +15,7 @@ const connection = new Sequelize({
   host: "localhost",
   dialect: "mysql",
   logging: false,
-  models: [Human, Watched, Watchlist, Top]
-})
+  models: [Human, Watched, Watchlist, Top],
+});
 
 export default connection;

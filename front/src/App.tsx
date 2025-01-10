@@ -7,9 +7,9 @@ import Watched from './pages/watched';
 import Watchlist from './pages/watchlist';
 import Movie from './pages/movie';
 import Navbar from './Components/Navbar';
-import Login from './Components/Authentication/Login';
-import Register from './Components/Authentication/Register';
-import Password from './Components/Authentication/Password';
+import Login from './pages/Authentication/Login';
+import Register from './pages/Authentication/Register';
+import Password from './pages/Authentication/Password';
 
 const App = () => {
   const [, setVisible] = useState(false);

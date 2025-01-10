@@ -33,7 +33,7 @@ export default function Login() {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:8000/users/auth', loginData, {
+            const response = await axios.post('http://localhost:8000/users/login', loginData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -72,12 +72,12 @@ export default function Login() {
                     <div className="mb-4">
                         <label  htmlFor="username">Username</label>
                         <input className='p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white' placeholder='Username' name='username' value={loginData.username} onChange={handleChange} type="text" />
-                        {errors && errors.general && errors.general.includes("User") && <p className="error-message text-red-500 text-sm mt-1">{errors.general}</p>}
+                        {errors && errors.general && errors.general.includes("User") && <p className="text-red-500 text-sm mt-1">{errors.general}</p>}
                     </div>
                     <div className="mb-6">
                         <label className='' htmlFor="password">Password</label>
                         <input className='p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white' placeholder='Password' name='password' value={loginData.password} onChange={handleChange} type="password" />
-                        {errors && errors.general && errors.general.includes("Password") && <p className='error-message text-red-500 text-sm mt-1'>{errors.general}</p>}
+                        {errors && errors.general && errors.general.includes("Password") && <p className='text-red-500 text-sm mt-1'>{errors.general}</p>}
                     </div>
                     <div className="mb-4 flex justify-between items-center">
                         <div className="flex gap-2">

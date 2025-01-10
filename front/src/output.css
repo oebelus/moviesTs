@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300&family=The+Girl+Next+Door&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mali:wght@300&family=The+Girl+Next+Door&display=swap");
 
 /*
 ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
@@ -24,7 +24,7 @@
 
 ::before,
 ::after {
-  --tw-content: '';
+  --tw-content: "";
 }
 
 /*
@@ -46,9 +46,10 @@ html,
   -moz-tab-size: 4;
   /* 3 */
   -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -91,7 +92,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 /*
@@ -137,7 +138,8 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   /* 1 */
   font-feature-settings: normal;
   /* 2 */
@@ -236,9 +238,9 @@ select {
 */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -285,7 +287,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 2. Correct the outline style in Safari.
 */
 
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -378,7 +380,8 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
@@ -446,7 +449,9 @@ video {
   display: none;
 }
 
-*, ::before, ::after{
+*,
+::before,
+::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -456,19 +461,19 @@ video {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -476,27 +481,27 @@ video {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
 }
 
-::backdrop{
+::backdrop {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -506,19 +511,19 @@ video {
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -526,61 +531,63 @@ video {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
 }
 
-.visible{
+.visible {
   visibility: visible;
 }
 
-.collapse{
+.collapse {
   visibility: collapse;
 }
 
-.fixed{
+.fixed {
   position: fixed;
 }
 
-.absolute{
+.absolute {
   position: absolute;
 }
 
-.my-2{
+.my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.border{
+.border {
   border-width: 1px;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-.filter{
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+    var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate)
+    var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 * {
-  font-family: monospace
+  font-family: monospace;
 }
 
 body {
@@ -589,15 +596,15 @@ body {
 
 .App {
   text-align: center;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   height: 265px;
   padding: 20px;
 }
 
 .home-title {
-  color:#BA8300;
+  color: #ba8300;
   margin-top: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .navbar {
@@ -609,7 +616,7 @@ body {
 
 .navbar-brand {
   font-size: 24px;
-  color: #BA8300;
+  color: #ba8300;
   font-weight: 700;
   font-family: cursive;
   font-style: italic;
@@ -621,7 +628,7 @@ body {
 
 .nav-link {
   position: relative;
-  color: #BA8300 !important;
+  color: #ba8300 !important;
   font-weight: 700;
   bottom: 5px;
 }
@@ -634,12 +641,12 @@ body {
 .drop-item {
   color: rgba(0, 0, 0, 0.836) !important;
   padding: 10px 10px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 18px;
 }
 
 .dropdown-menu {
-  background-color: #BA8300;
+  background-color: #ba8300;
 }
 
 .drop-item:hover {
@@ -663,7 +670,7 @@ body {
   justify-content: left;
   gap: 7%;
   cursor: pointer;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
   padding: 10px;
   align-items: center;
@@ -680,8 +687,8 @@ hr.scroll {
   border-top: 1px solid red;
 }
 
-.searchField ::-webkit-scrollbar{
-  box-shadow: inset 0 0 6px black
+.searchField ::-webkit-scrollbar {
+  box-shadow: inset 0 0 6px black;
 }
 
 .small {
@@ -689,9 +696,10 @@ hr.scroll {
   gap: 4%;
 }
 
-.link-li, .nav-link {
+.link-li,
+.nav-link {
   text-decoration: none;
-  color: #C7C8C9;
+  color: #c7c8c9;
   cursor: pointer;
   transition: 0.8s;
 }
@@ -725,7 +733,7 @@ hr.scroll {
 
 .movie-page-title {
   position: relative;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   color: #9e7106;
   font-size: 70px;
   top: 2%;
@@ -733,7 +741,7 @@ hr.scroll {
 
 .movie-container h2 {
   margin-bottom: 20px;
-  color: #BA8300;
+  color: #ba8300;
   font-weight: 600;
 }
 
@@ -754,7 +762,8 @@ hr.scroll {
   color: white;
   font-size: 20px;
   border-color: rgba(255, 255, 255, 0.315);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .find-user {
@@ -767,7 +776,8 @@ hr.scroll {
   color: white;
   font-size: 20px;
   border-color: rgba(255, 255, 255, 0.315);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .find-user-div {
@@ -791,11 +801,12 @@ hr.scroll {
 }
 
 .find-user-btn:hover {
-  background-color: #BA8300;
+  background-color: #ba8300;
   color: white;
 }
 
-.left-small, .right-small {
+.left-small,
+.right-small {
   position: relative;
   justify-content: center;
   display: flex;
@@ -811,7 +822,7 @@ hr.scroll {
 }
 
 .bi-star-fill {
-  color: #BA8300;
+  color: #ba8300;
   position: relative;
   right: 5px;
   bottom: 3px;
@@ -841,7 +852,7 @@ hr.scroll {
 }
 
 hr {
-  color: grey
+  color: grey;
 }
 
 .span-title {
@@ -881,7 +892,7 @@ hr {
 }
 
 .login-button {
-  background-color: #BA8300;
+  background-color: #ba8300;
   border-color: transparent;
   padding: 8px;
   font-size: 20px;
@@ -889,7 +900,7 @@ hr {
 }
 
 .register-button {
-  background-color: #BA8300;
+  background-color: #ba8300;
   border-color: transparent;
   padding: 8px;
   font-size: 20px;
@@ -900,14 +911,14 @@ hr {
 }
 
 .login-button:hover {
-  background-color: #1C1C1C;
-  border-color: #BA8300;
+  background-color: #1c1c1c;
+  border-color: #ba8300;
   color: white;
 }
 
 .register-button:hover {
-  background-color: #1C1C1C;
-  border-color: #BA8300;
+  background-color: #1c1c1c;
+  border-color: #ba8300;
   color: white;
 }
 
@@ -945,7 +956,7 @@ hr {
 .login-input {
   padding: 10px;
   border-radius: 5px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   border: 3px solid white;
   width: 75%;
   color: white;
@@ -955,7 +966,7 @@ hr {
 .register-input {
   padding: 10px;
   border-radius: 5px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   border: 3px solid white;
   width: 75%;
   color: white;
@@ -968,7 +979,7 @@ hr {
 }
 
 .card-footer {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
   font-family: fantasy;
   height: 90px;
@@ -1016,7 +1027,7 @@ hr {
 
 .remember-text {
   position: relative;
-  top: 8px
+  top: 8px;
 }
 
 .middle {
@@ -1031,18 +1042,19 @@ hr {
 
 .like-link {
   cursor: pointer;
-  color: #BA8300;
+  color: #ba8300;
   text-decoration: underline;
   font-size: 20px;
 }
 
 .movie-icon {
-  color: #BA8300;
+  color: #ba8300;
   position: relative;
   bottom: 16px;
 }
 
-.welcome-back, .reset-password {
+.welcome-back,
+.reset-password {
   position: relative;
   color: white;
   bottom: 10px;
@@ -1072,7 +1084,7 @@ hr {
 
 .round-button:hover {
   background-color: #131313;
-  color:#9e7106
+  color: #9e7106;
 }
 
 .three-buttons {
@@ -1102,7 +1114,7 @@ hr {
   margin-top: 6%;
   margin-bottom: 2%;
   font-size: 70px;
-  font-family: 'The Girl Next Door', cursive;
+  font-family: "The Girl Next Door", cursive;
 }
 
 .watched-page {
@@ -1156,7 +1168,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #C7C8C9;
+  color: #c7c8c9;
   gap: 10px;
   margin: auto;
   position: absolute;
@@ -1199,13 +1211,6 @@ hr {
 
 .custom-dropdown {
   width: 180%;
-}
-
-.error-message {
-  color: #9e7106;
-  position: relative;
-  bottom: 10px;
-  right: 26%;
 }
 
 .register-error {

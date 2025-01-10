@@ -487,13 +487,6 @@ hr {
   width: 180%;
 }
 
-.error-message {
-  color: #9e7106;
-  position: relative;
-  bottom: 10px;
-  right: 26%;
-}
-
 .register-error {
   position: relative;
   color: #9e7106;

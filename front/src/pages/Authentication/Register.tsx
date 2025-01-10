@@ -7,45 +7,71 @@ export default function Register() {
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
+
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   const [errors, setErrors] = useState<{
     username?: string;
     email?: string;
     password?: string;
-    confirmPassword?: string;
     general?: string;
+    confirmPassword?: string;
   }>({});
+
+  const [registering, setRegistering] = useState(false)
+  const [registerError, setRegisterError] = useState(false)
 
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setRegisterError(false)
+  };
+
+  const handleConfirmPassword = () => {
+    return formData.password == confirmPassword;
+  }
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);  
+    setRegisterError(false);
   };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setRegistering(true)
+
+    if (!handleConfirmPassword()) {
+      setErrors({...errors, confirmPassword: "Passwords aren't matching"})
+      return;
+    }
+
     setErrors({});
+    
     try {
       const response = await axios.post('http://localhost:8000/users/register', formData, {
         headers: { 'Content-Type': 'application/json' },
       });
 
       if (response.status === 200) {
+        setRegistering(false)
         const { id, username } = response.data.user;
         localStorage.setItem('username', username);
         localStorage.setItem('userId', id);
         localStorage.setItem('authenticated', 'true');
-        navigate(`/${id}`); // Redirect to user-specific page
+        navigate(`/${id}`);
       }
     } catch (error) {
+      setRegistering(false)
+      setRegisterError(true)
+      
       if (axios.isAxiosError(error) && error.response && error.response.data) {
-        const backendErrors = error.response.data.errors || {}; // Assume backend returns a structured error object
+        const backendErrors = error.response.data.errors || {};
         setErrors(backendErrors);
       } else {
-        setErrors({ general: 'An unexpected error occurred. Please try again.' });
+        setErrors({ general: "It's a server error! Please try again." });
       }
     }
   };
@@ -70,7 +96,7 @@ export default function Register() {
               onChange={handleChange}
               type="text"
             />
-            {errors.username && <p className="error-message text-red-500 text-sm mt-1">{errors.username}</p>}
+            {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="email">Email Address</label>
@@ -82,7 +108,7 @@ export default function Register() {
               onChange={handleChange}
               type="email"
             />
-            {errors.email && <p className="error-message text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className=" text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="password">Password</label>
@@ -94,7 +120,7 @@ export default function Register() {
               onChange={handleChange}
               type="password"
             />
-            {errors.password && <p className="error-message text-red-500 text-sm mt-1">{errors.password}</p>}
+            {errors.password && <p className=" text-red-500 text-sm mt-1">{errors.password}</p>}
           </div>
           <div className="mb-6">
             <label htmlFor="confirmPassword">Confirm Password</label>
@@ -102,14 +128,14 @@ export default function Register() {
               className="p-3 w-full rounded-lg border border-gray-300 bg-gray-700 text-white"
               placeholder="Confirm Password"
               name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
               type="password"
             />
-            {errors.confirmPassword && <p className="error-message text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <p className=" text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
           </div>
-          <button type="submit" className="bg-yellow-600 text-white hover:bg-yellow-500 w-full py-3 rounded-lg transition-colors">Register</button>
-          {errors.general && <p className="error-message text-red-500 text-sm mt-3">{errors.general}</p>}
+          <button type="submit" className="bg-yellow-600 text-white hover:bg-yellow-500 w-full py-3 rounded-lg transition-colors">{registering ? "Registering User..." : registerError ? "Error Registering User!" : "Register"}</button>
+          {errors.general && <p className=" text-red-500 text-sm mt-3">{errors.general}</p>}
         </form>
         <div className="mt-4 text-center">
           <div className="text-gray-400">Already have an account? <span className="text-yellow-600 cursor-pointer underline hover:text-yellow-500" onClick={() => navigate('/login')}>Login</span></div>

@@ -1,5 +1,5 @@
 export default interface Movies {
-    id: number;
+    _id: number;
     Title: string;
     Year: string;
     Runtime: string;
@@ -16,7 +16,7 @@ export default interface Movies {
 }
 
 export default interface MovieOut {
-    id: number;
+    _id: number;
     title: string;
     year: string;
     runtime: string;

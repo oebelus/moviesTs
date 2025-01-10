@@ -59,7 +59,7 @@ export default class TopService {
 
   public async getTopList(userId: string): Promise<any> {
     try {
-      const topList = await Top.find({ where: { humanId: userId } });
+      const topList = await Top.find({ humanId: userId });
       return topList;
     } catch (error) {
       throw new Error("Internal Server Error: " + (error as Error).message);

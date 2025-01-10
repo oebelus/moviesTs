@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import MovieOut from '../helpers/types';
@@ -26,8 +26,8 @@ export default function Watchlist() {
 
   const deleteWatchlist = (index: number) => {
     const movieToDelete: MovieOut = watchlist[index]
-    console.log(movieToDelete.id)
-    axios.delete(`http://localhost:8000/watchlist/${userId}/${movieToDelete.id}`)
+    
+    axios.delete(`http://localhost:8000/watchlist/${userId}/${movieToDelete._id}`)
     .then((response) => {
       console.log(response)
       const updatedwatchlist = watchlist.filter((_, i) => i !== index);
@@ -45,21 +45,17 @@ export default function Watchlist() {
 
   return (
     <div>
-      <div className='watched-page'>
-        <h1 className='watched-title'>My Watchlist</h1>
-        <div className="watched-container">
+      <div>
+        <h1 className='text-[#9e7106] md:text-6xl text-3xl mt-6 mb-2'>My Watchlist</h1>
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-5 mt-10">
           {watchlist.map((movie: MovieOut, index) => 
-            <div className='watched-movies' key={index}>
-              <p onClick={() => deleteWatchlist(index)} className="watched-cross">x</p>
-              <img onClick={() => imageClick(movie.title)} className='single-poster' src={movie.poster} alt='poster'/>
-              <h3 className="single-title">{movie.title}</h3>
-              <div className="single-small">
-                <div className="single-left">
-                  <p className="single-runtime">'{movie.runtime}</p>
-                </div>
-                <div className="single-right">
-                  <p className="single-type">{movie.type[0].toUpperCase() + movie.type.slice(1, movie.type.length)}</p>
-                </div>
+            <div className='relative bg-[#191919] py-5 px-4 flex flex-col' key={index}>
+              <p onClick={() => deleteWatchlist(index)} className="absolute top-2 left-2 text-white cursor-pointer text-xl font-bold">x</p>
+              <img onClick={() => imageClick(movie.title)} className='w-42 h-72 mx-auto object-cover cursor-pointer' src={movie.poster} alt='poster'/>
+              <h3 className="text-white mt-4 mb-4">{movie.title}</h3>
+              <div className="-mb-6 flex justify-between items-center text-[#c7c8c9] gap-2">
+                <p className="text-sm">{movie.runtime}</p>
+                <p className="text-sm border border-white/40 py-1 px-2">{movie.type[0].toUpperCase() + movie.type.slice(1, movie.type.length)}</p>
               </div>
             </div>
           )}

@@ -13,10 +13,10 @@ import Password from './pages/Authentication/Password';
 
 const App = () => {
   const [, setVisible] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
+  const [, setAuthenticated] = useState(false);
 
   const isAuthenticated = Boolean(localStorage.getItem('authenticated'));
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = localStorage.getItem('userId');
   const username: string | null = localStorage.getItem('username');
 
   useEffect(() => {
@@ -24,11 +24,9 @@ const App = () => {
   }, []);
 
   return (
-    <div className="text-center bg-card">
+    <div className="text-center bg-card min-h-screen font-mono">
       <BrowserRouter>
         <Navbar
-          authenticated={authenticated}
-          isAuthenticated={isAuthenticated}
           userId={userId}
           setVisible={setVisible}
           setAuthenticated={setAuthenticated}

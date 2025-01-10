@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 interface HomeProps {
     isAuthenticated: boolean | null,
-    userId: number | null,
+    userId: string | null,
 }
 
 interface Movies {
@@ -26,7 +26,7 @@ interface Movies {
     Country: string;
 }
 
-export default function Home({isAuthenticated, userId}: HomeProps) {
+export default function Home({isAuthenticated}: HomeProps) {
     const [shows, setShows] = useState<Movies[]>()
     const [input, setInput] = useState("")
     const [display, setDisplay] = useState(false)
@@ -39,7 +39,7 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
         type: movieData.Type,
         poster: movieData.Poster,
     }
-    const theId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId")
 
     useEffect(() => {
         if (movieName) {
@@ -64,7 +64,7 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
 
     const addWatched =  async () => {
         try {
-            /*const response = */await axios.post(`http://localhost:8000/watched/${userId}`, postMovie, {
+            await axios.post(`http://localhost:8000/watched/${userId}`, postMovie, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
@@ -130,7 +130,7 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
                         >
                             <img src={show.Poster ? show.Poster : undefined} width="60px" height="80px" alt="" />
                             <div>
-                                <h4>{show.Title}</h4>
+                                <h4 className='text-left'>{show.Title}</h4>
                                 <div className="flex gap-2">
                                     <p>{show.Year}</p>
                                     <p>-</p>
@@ -146,57 +146,55 @@ export default function Home({isAuthenticated, userId}: HomeProps) {
                 <div className='m-auto bg-container rounded-md p-4 mt-4 mb-4 border-2 border-zinc-900 md:w-[80%] lg:w-[80%] w-[95%]'>
                     <h2 className='text-yellow-600 text-3xl mb-4'>{movieData.Title}</h2>
                     <div className='md:px-8 px-2 md:flex sm:flex-row gap-4 md:justify-between flex-col justify-center'>
-                        <div>
+                        <div className='flex flex-col md:mt-20'>
                             <div className="flex gap-4 text-white justify-center mb-2">
                                 <p className=''>{movieData.Type? movieData.Type[0].toUpperCase() + movieData.Type.slice(1, movieData.Type.length) : null},</p>
                                 <p className='year'>{movieData.Released},</p>
                                 <p className='runtime'>{movieData.Runtime}</p>
                             </div>
-                            <div>
+                            <div className='flex flex-col'>
                                 <img src={movieData.Poster} alt="" />
-                                <div className="flex gap-2 mt-4 mb-4">
+                                <div className="flex gap-2 mt-4 mb-4 justify-center">
                                     {movieData.Genre ? movieData.Genre.split(', ').map((genre, key: number) => {
                                         return (
-                                            <p className="genre" key={key}>{genre}</p>
+                                            <p className="text-white border-zinc-600 border-1 p-2 rounded-lg bg-zinc-900" key={key}>{genre}</p>
                                         )
                                     }): null}
                                 </div>
                             </div>
                         </div>
                         <div className="flex flex-col gap-4 text-lg">
-                            <div className='flex relative ml-auto gap-10 text-white text-lg'>
-                                {movieData.imdbRating?
-                                <div>
-                                    <div className='flex gap-1'>
-                                        <div className='mt-2'>
+                            {movieData.imdbRating ? (
+                                <div className="md:text-right relative text-white text-lg">
+                                    <div className="flex gap-1 md:justify-end justify-center">
+                                        <div className="mt-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16">
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                             </svg>
                                         </div>
-                                         <p>IMDb Rating</p>
+                                        <p>IMDb Rating</p>
                                     </div>
                                     <p>{movieData.imdbRating}/10</p>
-                                </div>:null
-                                }
-                            </div>
-                            <div className='text-white mt-4 text-lg flex flex-col gap-8 sm:mx-24 mx-8'>
-                                <p><span className=''>Director: </span>{movieData.Director == "N/A" ? movieData.Writer : movieData.Director}<hr/></p>
-                                <p><span className=''>Writer: </span>{movieData.Writer}<hr/></p>
-                                <p><span className=''>Actors: </span>{movieData.Actors}<hr/></p>
-                                <p>{movieData.Plot}<hr/></p>
-                                <p><span className=''>Country: </span>{movieData.Country}</p>
+                                </div>
+                            ) : null}
+                            <div className='text-white text-lg flex flex-col gap-8 sm:mx-24 mx-8'>
+                                <p><span className='text-zinc-400'>Director: </span>{movieData.Director == "N/A" ? movieData.Writer : movieData.Director}<hr className='mt-2' /></p>
+                                <p><span className='text-zinc-400'>Writer: </span>{movieData.Writer}<hr className='mt-2' /></p>
+                                <p><span className='text-zinc-400'>Actors: </span>{movieData.Actors}<hr className='mt-2' /></p>
+                                <p>{movieData.Plot}<hr className='mt-2'/></p>
+                                <p><span className='text-zinc-400'>Country: </span>{movieData.Country}</p>
                             </div>
                         </div>
                     </div>
-                    {theId !== null &&
-                    <div className="three-buttons">
-                        <button title='Add to Watched' onClick={addWatched} className="add-watched round-button">
+                    {userId !== null &&
+                    <div className="flex gap-4 justify-center mt-4">
+                        <button title='Add to Watched' onClick={addWatched} className="hover:bg-yellow-600 transition-all duration-300 p-2 text-white w-20 border-2 border-yellow-600 rounded-full">
                             <EyeIcon/>
                         </button>
-                        <button title='Add to Watchlist' onClick={addWatchlist} className="add-watchlist round-button">
+                        <button title='Add to Watchlist' onClick={addWatchlist} className="hover:bg-yellow-600 transition-all duration-300 p-2 text-white w-20 border-2 border-yellow-600 rounded-full">
                             <PlusIcon/>
                         </button>
-                        <button title='Add to Top 100' onClick={addTop} className="add-top round-button">
+                        <button title='Add to Top 100' onClick={addTop} className="hover:bg-yellow-600 transition-all duration-300 p-2 text-white w-20 border-2 border-yellow-600 rounded-full">
                             <StarIcon/>
                         </button>
                     </div>

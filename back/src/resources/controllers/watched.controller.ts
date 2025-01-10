@@ -79,7 +79,7 @@ export default class WatchedController implements Controller {
     try {
       const userId = req.params.userId;
       const watchedList = await this.watchedService.getWatchedList(userId);
-
+      console.log(watchedList);
       return res.status(200).json(watchedList);
     } catch (error) {
       next(error);

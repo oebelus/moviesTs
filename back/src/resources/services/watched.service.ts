@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { Watched } from "../models/Watched";
 
 export default class WatchedService {
@@ -59,7 +60,10 @@ export default class WatchedService {
 
   public async getWatchedList(userId: string): Promise<any> {
     try {
-      const watchedList = await Watched.find({ where: { humanId: userId } });
+      const watchedList = await Watched.find({
+        humanId: new Types.ObjectId(userId),
+      });
+
       return watchedList;
     } catch (error) {
       throw new Error("Internal Server Error: " + (error as Error).message);

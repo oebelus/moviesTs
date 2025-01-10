@@ -3,44 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: monospace;
-}
-
 body {
-  background-color: #212121;
-}
-
-.home-title {
-  color: #ba8300;
-  margin-top: 30px;
-}
-
-.drop-item {
-  color: rgba(0, 0, 0, 0.836) !important;
-  padding: 10px 10px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 18px;
-}
-
-.movie-container-second {
-  position: relative;
-  background-color: #191919;
-  border-radius: 10px;
-  width: 70%;
-  height: 40%;
-  padding: 30px 50px;
-  margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-top: 1%;
-}
-
-.movie-page-title {
-  position: relative;
-  font-family: "Courier New", Courier, monospace;
-  color: #9e7106;
-  font-size: 70px;
-  top: 2%;
+  background: #1c1c1c;
 }
 
 .movie-container h2 {
@@ -88,22 +52,6 @@ body {
   color: white;
 }
 
-.left-small,
-.right-small {
-  position: relative;
-  justify-content: center;
-  display: flex;
-  gap: 20px;
-  color: white;
-  top: 5px;
-  font-size: 20px;
-}
-
-.right-small {
-  font-size: 20px;
-  justify-content: right;
-}
-
 .bi-star-fill {
   color: #ba8300;
   position: relative;
@@ -111,41 +59,9 @@ body {
   bottom: 3px;
 }
 
-.poster-image {
-  border-radius: 10px;
-}
-
-.genre {
-  display: flex;
-  gap: 5px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.315);
-  padding: 6px 10px;
-  border-radius: 20px;
-  border: solid 1px rgba(255, 255, 255, 0.158);
-  margin: auto;
-}
-
-.genres {
-  display: flex;
-  gap: 10px;
-  position: relative;
-  top: 10px;
-  justify-content: center;
-}
-
-hr {
-  color: grey;
-}
-
 .span-title {
   color: white;
   font-size: 18px;
-}
-
-.right-big p {
-  color: rgba(255, 255, 255, 0.582);
-  margin-top: 28px;
 }
 
 .cross {
@@ -504,18 +420,8 @@ hr {
     gap: 2%;
     justify-content: center;
   }
-  .navbar-toggler {
-    position: absolute;
-    right: 0;
-    top: 8px;
-  }
   .dropdown-menu {
     position: absolute !important;
-  }
-  .navbar-nav {
-    position: relative !important;
-    right: 10%;
-    margin-bottom: 20px;
   }
   .watched-movies {
     padding: 20px;

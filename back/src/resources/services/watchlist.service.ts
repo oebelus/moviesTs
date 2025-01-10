@@ -60,7 +60,7 @@ export default class WatchlistService {
   public async getWatchlist(userId: string): Promise<any> {
     try {
       const listOfWatched = await Watchlist.find({
-        where: { humanId: userId },
+        humanId: userId,
       });
       return listOfWatched;
     } catch (error) {

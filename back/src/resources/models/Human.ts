@@ -26,6 +26,12 @@ const HumanSchema = new Schema(
         ref: "Watchlist",
       },
     ],
+    watched: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Watched",
+      },
+    ],
   },
   {
     timestamps: {

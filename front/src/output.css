@@ -600,13 +600,6 @@ body {
   height: 265px;
   padding: 20px;
 }
-
-.home-title {
-  color: #ba8300;
-  margin-top: 30px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .navbar {
   background-color: transparent !important;
   font-size: 20px;

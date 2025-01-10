@@ -2,16 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 interface NavbarProps {
-    authenticated: boolean;
-    isAuthenticated: boolean | null;
-    userId: number;
+    userId: string | null;
     setVisible: (visible: boolean) => void;
     setAuthenticated: (authenticated: boolean) => void;
 }
 
 export default function Navbar({
-    isAuthenticated,
-    authenticated,
     userId,
     setVisible,
     setAuthenticated,
@@ -25,6 +21,8 @@ export default function Navbar({
         setAuthenticated(false);
         window.location.reload();
     };
+
+    const authenticated2 = localStorage.getItem("accessToken") != undefined;
 
     const toggleNav = () => setIsNavOpen(!isNavOpen);
 
@@ -42,7 +40,7 @@ export default function Navbar({
                     <span className="block w-6 h-1 bg-yellow-600"></span>
                 </button>
                 <Link
-                    to={isAuthenticated ? `/${userId}` : "/"}
+                    to={authenticated2 ? `/${userId}` : "/"}
                     className="text-xl font-bold text-yellow-600"
                 >
                     My Movies
@@ -53,7 +51,7 @@ export default function Navbar({
             <div
                 className={`fixed top-0 left-0 h-full bg-card transform transition-transform duration-300 ${
                     isNavOpen ? "translate-x-0" : "-translate-x-full"
-                } md:relative md:translate-x-0 md:flex md:bg-transparent w-48`}
+                } md:relative md:translate-x-0 md:flex md:bg-transparent w-48 z-50`}
             >
                 <div className="flex justify-between items-center p-4">
                     {/* Close Button */}
@@ -70,61 +68,58 @@ export default function Navbar({
                 <ul className="flex flex-col p-4 space-y-4 md:flex-row md:space-y-0 md:space-x-6">
                     <li>
                         <Link
-                            to={isAuthenticated ? `/${userId}` : "/"}
+                            to={authenticated2 ? `/${userId}` : "/"}
                             onClick={() => setIsNavOpen(false)}
                             className="hover:text-[#896207] text-yellow-600"
                         >
                             Home
                         </Link>
                     </li>
-                    {authenticated && (
-                        <li>
-                            <div className="cursor-pointer hover:text-[#896207]">
-                                My Movies
-                            </div>
-                            <ul className="absolute left-0 top-full hidden group-hover:block bg-hover p-2 space-y-2 shadow-lg rounded-lg">
-                                <li>
-                                    <Link
-                                        to={`/${userId}/top`}
-                                        onClick={() => setIsNavOpen(false)}
-                                        className="block hover:text-[#896207] text-yellow-600"
-                                    >
-                                        My Top 100 Movies
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={`/${userId}/watchlist`}
-                                        onClick={() => setIsNavOpen(false)}
-                                        className="block hover:text-[#896207] text-yellow-600"
-                                    >
-                                        My Watchlist
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to={`/${userId}/watched`}
-                                        onClick={() => setIsNavOpen(false)}
-                                        className="block hover:text-[#896207] text-yellow-600"
-                                    >
-                                        Watched
-                                    </Link>
-                                </li>
-                            </ul>
-                        </li>
+                    {authenticated2 && (
+                        <>
+                            <li>
+                                <Link
+                                    to={`/${userId}/watchlist`}
+                                    onClick={() => setIsNavOpen(false)}
+                                    className="hover:text-[#896207] text-yellow-600"
+                                >
+                                    Watchlist
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to={`/${userId}/watched`}
+                                    onClick={() => setIsNavOpen(false)}
+                                    className="hover:text-[#896207] text-yellow-600"
+                                >
+                                    Watched
+                                </Link>
+                            </li>
+                        </>
                     )}
-                    {authenticated ? (
-                        <li>
-                            <button
-                                onClick={() => {
-                                    handleLogout();
-                                    setIsNavOpen(false);
-                                }}
-                                className="hover:text-[#896207] text-yellow-600"
-                            >
-                                Logout
-                            </button>
-                        </li>
+                    {authenticated2 ? (
+                        <>
+                            <li>
+                                <button
+                                    onClick={() => {
+                                        handleLogout();
+                                        setIsNavOpen(false);
+                                    }}
+                                    className="hover:text-[#896207] text-yellow-600"
+                                >
+                                    Logout
+                                </button>
+                            </li>
+                            <li className="w-[160px] relative">
+                                <Link
+                                    to={`/${userId}/top`}
+                                    onClick={() => setIsNavOpen(false)}
+                                    className="hover:text-[#896207] text-yellow-600"
+                                >
+                                    My Top 100 Movies
+                                </Link>
+                            </li>
+                        </>
                     ) : (
                         <li className="flex gap-4">
                             <Link

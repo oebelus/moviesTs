@@ -12,7 +12,8 @@ export default class WatchlistService {
   }> {
     try {
       const existingMovie = await Watchlist.findOne({
-        where: { title: movie.title, humanId: userId },
+        title: movie.title,
+        humanId: userId,
       });
 
       if (existingMovie) {

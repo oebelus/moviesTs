@@ -2,14 +2,12 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Home from './pages/home';
-import Top from './pages/top';
-import Watched from './pages/watched';
-import Watchlist from './pages/watchlist';
 import Movie from './pages/movie';
 import Navbar from './Components/Navbar';
 import Login from './pages/Authentication/Login';
 import Register from './pages/Authentication/Register';
 import Password from './pages/Authentication/Password';
+import MovieList from './pages/MovieList';
 
 const App = () => {
   const [, setVisible] = useState(false);
@@ -27,7 +25,6 @@ const App = () => {
     <div className="text-center bg-card min-h-screen font-mono">
       <BrowserRouter>
         <Navbar
-          userId={userId}
           setVisible={setVisible}
           setAuthenticated={setAuthenticated}
         />
@@ -41,24 +38,24 @@ const App = () => {
 
           {/* Protected Routes */}
           <Route
-            path="/:userId"
+            path="/"
             element={isAuthenticated ? <Home userId={userId} isAuthenticated={isAuthenticated} /> : <Navigate to="/auth/login" replace />}
           />
           <Route
-            path="/:userId/watched"
-            element={isAuthenticated ? <Watched /> : <Navigate to="/auth/login" replace />}
+            path="/watched"
+            element={isAuthenticated ? <MovieList username={username} /> : <Navigate to="/auth/login" replace />}
           />
           <Route
-            path="/:userId/watchlist"
-            element={isAuthenticated ? <Watchlist /> : <Navigate to="/auth/login" replace />}
+            path="/watchlist"
+            element={isAuthenticated ? <MovieList username={username} /> : <Navigate to="/auth/login" replace />}
+          />
+          <Route
+            path="/top"
+            element={isAuthenticated ? <MovieList username={username} /> : <Navigate to="/auth/login" replace />}
           />
           <Route
             path="/movie/:title"
             element={isAuthenticated ? <Movie /> : <Navigate to="/auth/login" replace />}
-          />
-          <Route
-            path="/:userId/top"
-            element={isAuthenticated ? <Top username={username} /> : <Navigate to="/auth/login" replace />}
           />
         </Routes>
       </BrowserRouter>

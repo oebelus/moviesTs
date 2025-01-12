@@ -1,28 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 interface NavbarProps {
-    userId: string | null;
     setVisible: (visible: boolean) => void;
     setAuthenticated: (authenticated: boolean) => void;
 }
 
 export default function Navbar({
-    userId,
     setVisible,
     setAuthenticated,
 }: NavbarProps) {
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const nav = useNavigate();
 
     const handleLogout = () => {
-        ["authenticated", "userId", "username", "isAuthenticated"].forEach(item =>
+        ["authenticated", "userId", "username", "isAuthenticated", "accessToken", "refreshToken"].forEach(item =>
             localStorage.removeItem(item)
         );
         setAuthenticated(false);
-        window.location.reload();
+        nav("/");
     };
 
-    const authenticated2 = localStorage.getItem("accessToken") != undefined;
+    const authenticated = localStorage.getItem("authenticated") == "true";
 
     const toggleNav = () => setIsNavOpen(!isNavOpen);
 
@@ -40,7 +39,7 @@ export default function Navbar({
                     <span className="block w-6 h-1 bg-yellow-600"></span>
                 </button>
                 <Link
-                    to={authenticated2 ? `/${userId}` : "/"}
+                    to="/"
                     className="text-xl font-bold text-yellow-600"
                 >
                     My Movies
@@ -68,18 +67,18 @@ export default function Navbar({
                 <ul className="flex flex-col p-4 space-y-4 md:flex-row md:space-y-0 md:space-x-6">
                     <li>
                         <Link
-                            to={authenticated2 ? `/${userId}` : "/"}
+                            to="/"
                             onClick={() => setIsNavOpen(false)}
                             className="hover:text-[#896207] text-yellow-600"
                         >
                             Home
                         </Link>
                     </li>
-                    {authenticated2 && (
+                    {authenticated && (
                         <>
                             <li>
                                 <Link
-                                    to={`/${userId}/watchlist`}
+                                    to="watchlist"
                                     onClick={() => setIsNavOpen(false)}
                                     className="hover:text-[#896207] text-yellow-600"
                                 >
@@ -88,7 +87,7 @@ export default function Navbar({
                             </li>
                             <li>
                                 <Link
-                                    to={`/${userId}/watched`}
+                                    to="watched"
                                     onClick={() => setIsNavOpen(false)}
                                     className="hover:text-[#896207] text-yellow-600"
                                 >
@@ -97,7 +96,7 @@ export default function Navbar({
                             </li>
                         </>
                     )}
-                    {authenticated2 ? (
+                    {authenticated ? (
                         <>
                             <li>
                                 <button
@@ -112,7 +111,7 @@ export default function Navbar({
                             </li>
                             <li className="w-[160px] relative">
                                 <Link
-                                    to={`/${userId}/top`}
+                                    to="/top"
                                     onClick={() => setIsNavOpen(false)}
                                     className="hover:text-[#896207] text-yellow-600"
                                 >

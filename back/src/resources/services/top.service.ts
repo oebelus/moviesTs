@@ -12,7 +12,8 @@ export default class TopService {
   }> {
     try {
       const existingMovie = await Top.findOne({
-        where: { title: movie.title, humanId: userId },
+        title: movie.title,
+        humanId: userId,
       });
 
       if (existingMovie) {

@@ -13,8 +13,11 @@ export default class WatchedService {
   }> {
     try {
       const existingMovie = await Watched.findOne({
-        where: { title: movie.title, humanId: userId },
+        title: movie.title,
+        humanId: userId,
       });
+
+      console.log(existingMovie);
 
       if (existingMovie) {
         return {

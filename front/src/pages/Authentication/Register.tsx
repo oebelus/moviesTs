@@ -61,7 +61,7 @@ export default function Register() {
         localStorage.setItem('username', username);
         localStorage.setItem('userId', id);
         localStorage.setItem('authenticated', 'true');
-        navigate(`/${id}`);
+        navigate(`/`);
       }
     } catch (error) {
       setRegistering(false)
@@ -134,7 +134,7 @@ export default function Register() {
             />
             {errors.confirmPassword && <p className=" text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
           </div>
-          <button type="submit" className="bg-yellow-600 text-white hover:bg-yellow-500 w-full py-3 rounded-lg transition-colors">{registering ? "Registering User..." : registerError ? "Error Registering User!" : "Register"}</button>
+          <button type="submit" className="bg-yellow-600 text-white hover:border-2 hover:bg-transparent hover:border-yellow-600 hover:rounded-lg w-full py-3 rounded-lg transition-colors">{registering ? "Registering User..." : registerError ? "Error Registering User!" : "Register"}</button>
           {errors.general && <p className=" text-red-500 text-sm mt-3">{errors.general}</p>}
         </form>
         <div className="mt-4 text-center">

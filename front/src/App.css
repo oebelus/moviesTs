@@ -7,97 +7,6 @@ body {
   background: #1c1c1c;
 }
 
-.movie-container h2 {
-  margin-bottom: 20px;
-  color: #ba8300;
-  font-weight: 600;
-}
-
-.find-user {
-  position: relative;
-  width: 90%;
-  height: 40px;
-  padding: 20px;
-  border-radius: 40px;
-  background-color: #131313;
-  color: white;
-  font-size: 20px;
-  border-color: rgba(255, 255, 255, 0.315);
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
-.find-user-div {
-  position: absolute;
-  display: flex;
-  gap: 2%;
-  width: 30%;
-  top: 2%;
-}
-
-.find-user-btn {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  color: #131313;
-  background-color: #9e7106;
-  font-weight: bold;
-  border: 1px solid #9e7106;
-  transition: 0.5s;
-}
-
-.find-user-btn:hover {
-  background-color: #ba8300;
-  color: white;
-}
-
-.bi-star-fill {
-  color: #ba8300;
-  position: relative;
-  right: 5px;
-  bottom: 3px;
-}
-
-.span-title {
-  color: white;
-  font-size: 18px;
-}
-
-.cross {
-  color: white !important;
-  position: relative;
-  justify-content: right;
-  display: flex;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 1;
-  text-align: center;
-}
-
-.modal-thing {
-  width: 40%;
-  height: 80%;
-  margin-top: -2.5rem;
-}
-
-.card {
-  position: relative;
-  background-color: #191919;
-  border: transparent;
-  bottom: 10px;
-  width: auto;
-  overflow: scroll;
-}
-
-.login-button {
-  background-color: #ba8300;
-  border-color: transparent;
-  padding: 8px;
-  font-size: 20px;
-  transition: 0.5s;
-}
-
 .register-button {
   background-color: #ba8300;
   border-color: transparent;
@@ -113,20 +22,6 @@ body {
   background-color: #1c1c1c;
   border-color: #ba8300;
   color: white;
-}
-
-.register-button:hover {
-  background-color: #1c1c1c;
-  border-color: #ba8300;
-  color: white;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: -19px;
-  justify-content: center;
 }
 
 .register-form {
@@ -321,40 +216,6 @@ body {
   margin-top: 10px;
 }
 
-.watched-movies {
-  position: relative;
-  margin: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #191919;
-  max-width: 17%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 5px;
-}
-
-.watched-stats {
-  position: relative;
-  color: white;
-  font-size: 20px;
-  bottom: 30px;
-}
-
-.single-poster {
-  position: relative;
-  width: 160px;
-  height: 300px;
-  cursor: pointer;
-  align-self: center;
-  overflow: hidden;
-}
-
-.single-title {
-  margin-top: 10px;
-  color: white;
-  margin-bottom: 15%;
-}
-
 .single-small {
   display: flex;
   justify-content: space-between;
@@ -423,11 +284,6 @@ body {
   .dropdown-menu {
     position: absolute !important;
   }
-  .watched-movies {
-    padding: 20px;
-    display: flex;
-    max-width: calc(50% - 30px);
-  }
   .find-user-div {
     gap: 5%;
   }
@@ -454,11 +310,6 @@ body {
 }
 
 @media only screen and (max-width: 500px) {
-  .watched-movies {
-    padding: 20px;
-    display: flex;
-    max-width: calc(100% - 10px);
-  }
   .d-flex {
     top: 0;
   }

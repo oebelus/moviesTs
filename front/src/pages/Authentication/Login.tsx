@@ -12,7 +12,6 @@ export default function Login() {
         general?: string;
     }
 
-    const [authenticated, setAuthenticated] = useState(false)
     const [errors, setErrors] = useState<ErrorState | null>(null);
     
     const navigate = useNavigate();
@@ -39,12 +38,12 @@ export default function Login() {
                 }
             })
             if (response.status === 200) {
+                console.log(response.data)
                 const userId = response.data.userId
-                setAuthenticated(true)
-                localStorage.setItem("authenticated", String(authenticated))
+                localStorage.setItem("authenticated", "true")
                 localStorage.setItem("userId", userId)
                 localStorage.setItem("username", loginData.username)
-                navigate(`/${userId}`)
+                navigate(`/`)
                 window.location.reload();
             } else {
                 setErrors({ general: response.data.error });
@@ -88,7 +87,7 @@ export default function Login() {
                             <span onClick={goToPasswordReset} className='text-sm text-yellow-600 hover:text-yellow-500 cursor-pointer'>Forgot Password</span>
                         </div>
                     </div>
-                    <button type='submit' className="bg-yellow-600 text-white hover:bg-yellow-500 w-full py-3 rounded-lg transition-colors">Login</button>
+                    <button type='submit' className="bg-yellow-600 text-white hover:border-2 hover:bg-transparent hover:border-yellow-600 hover:rounded-lg w-full py-3 text-xl transition-colors">Login</button>
                 </form>
                 <div className="mt-4 text-center">
                     <div className="text-gray-400">Don't have an account? <span className='text-yellow-600 cursor-pointer underline hover:text-yellow-500' onClick={goToRegister}>Register</span></div>

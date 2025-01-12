@@ -1,8 +1,17 @@
 import { Human } from "../models/Human";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { TokenService } from "./token.service";
 
 export default class HumanService {
   private human = Human;
+  private tokenService = new TokenService();
+
+  private generateToken(payload: any): string {
+    return jwt.sign(payload, process.env.JWT_SECRET as string, {
+      expiresIn: "1d",
+    });
+  }
 
   public async register(
     username: string,
@@ -10,25 +19,6 @@ export default class HumanService {
     password: string
   ): Promise<RegisterResult> {
     try {
-      if (!email) {
-        return {
-          success: false,
-          error: "The Email Field is Important",
-        };
-      }
-      if (!username) {
-        return {
-          success: false,
-          error: "The Username Field is Important",
-        };
-      }
-      if (!password) {
-        return {
-          success: false,
-          error: "The Password Field is Important",
-        };
-      }
-
       const usernameExists = await this.human.findOne({ username });
       if (usernameExists) {
         return {
@@ -55,7 +45,7 @@ export default class HumanService {
       return {
         success: true,
         data: {
-          user,
+          userId: user._id.toString(),
           message: "User created successfully",
         },
       };
@@ -87,10 +77,24 @@ export default class HumanService {
         };
       }
 
+      const accessToken = this.tokenService.generateAccessToken({
+        userId: user._id.toString(),
+        username: user.username,
+      });
+
+      const refreshToken = this.tokenService.generateRefreshToken();
+
+      await this.tokenService.saveRefreshToken(
+        user._id.toString(),
+        refreshToken
+      );
+
       return {
         success: true,
         data: {
           userId: user._id.toString(),
+          accessToken,
+          refreshToken,
           message: "Login successful",
         },
       };
@@ -98,6 +102,50 @@ export default class HumanService {
       return {
         success: false,
         error: `Login error: ${(err as Error).message}`,
+      };
+    }
+  }
+
+  async refreshToken(refreshToken: string): Promise<RefreshTokenResult> {
+    try {
+      const tokenDoc = await this.tokenService.verifyRefreshToken(refreshToken);
+
+      const user = await this.human.findById(tokenDoc.userId);
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const accessToken = this.tokenService.generateAccessToken({
+        userId: user._id.toString(),
+        username: user.username,
+      });
+
+      return {
+        success: true,
+        data: {
+          accessToken,
+          message: "Token refreshed successfully",
+        },
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: `Token refresh error: ${(err as Error).message}`,
+      };
+    }
+  }
+
+  async logout(refreshToken: string): Promise<LogoutResult> {
+    try {
+      await this.tokenService.deleteRefreshToken(refreshToken);
+      return {
+        success: true,
+        message: "Logged out successfully",
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: `Logout error: ${(err as Error).message}`,
       };
     }
   }
@@ -113,7 +161,7 @@ export default class HumanService {
 
       const user = await this.human
         .findOne({ username })
-        .select("-password") // Exclude password from the result
+        .select("-password")
         .lean(); // Convert to plain JavaScript object
 
       if (!user) {
@@ -149,8 +197,8 @@ export default class HumanService {
 
       const user = await this.human
         .findOne({ username })
-        .select("-password") // Exclude password from the result
-        .lean(); // Convert to plain JavaScript object
+        .select("-password")
+        .lean();
 
       if (!user) {
         return {
